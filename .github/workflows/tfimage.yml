@@ -140,44 +140,30 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         AWS_REGION: us-east-1
-
-    - name: Build, test, tag, and push webapp image to Amazon ECR
+        
+    - name: Building the web app and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: webapp
-        IMAGE_TAG: v0.1
+        IMAGE_TAG: v0.2
       run: |
-        cd ./web_app
+        cd web_app/
         ls -ltra
         # Docker build
-        docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
-        # Unit test
-        # docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        # docker ps
-        # echo "Pause for 10 seconds to let container start"
-        # sleep 10
-        # curl localhost -vvv
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker ps
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
-
-  #       deploy image
-  
-    - name: Build, test, tag, and push mysql image to Amazon ECR
+    - name: Building the sql and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: mysql
-        IMAGE_TAG: v0.1
+        IMAGE_TAG: v0.2
       run: |
-        cd ./sql_app
+        cd sql/
         ls -ltra
         # Docker build
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        # Unit test
-        # docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        # docker ps
-        # echo "Pause for 10 seconds to let container start"
-        # sleep 10
-        # curl localhost -vvv
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker ps
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-    
  
