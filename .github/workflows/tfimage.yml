@@ -119,7 +119,7 @@ jobs:
         run: sleep 60
         shell: bash
       
-#       deploy images
+#       deploy image
   
   build:
     needs: terraform
