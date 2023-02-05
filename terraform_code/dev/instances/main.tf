@@ -73,7 +73,7 @@ resource "aws_key_pair" "my_key" {
 
 # Security Group
 resource "aws_security_group" "my_sg" {
-  name        = "allow_my_ports"
+  name        = "allow_my_port"
   description = "Allow SSH inbound traffic"
   vpc_id      = data.aws_vpc.default.id
 
@@ -138,7 +138,7 @@ resource "aws_eip" "static_eip" {
 }
 # Creating ecr repositories
 resource "aws_ecr_repository" "app" {
-  name                 = "webapp_ecr"
+  name                 = "webapp"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -147,7 +147,7 @@ resource "aws_ecr_repository" "app" {
 }
 
 resource "aws_ecr_repository" "sql" {
-  name                 = "mysql_ecr"
+  name                 = "mysql"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
