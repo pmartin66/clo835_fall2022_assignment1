@@ -3,10 +3,10 @@ kind: Pod
 metadata:
   labels:
     app: employees
-  name: employees
+  name: webapp
 spec:
   containers:
-  - image: 380295710645.dkr.ecr.us-east-1.amazonaws.com/webapp:v1.0
+  - image: 380295710645.dkr.ecr.us-east-1.amazonaws.com/webapp:v1.22
     name: employees
     env:
     - name: DBHOST

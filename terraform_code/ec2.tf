@@ -43,15 +43,15 @@ resource "aws_instance" "k8s" {
     project = "clo835"
   }
 
-  key_name                = "assignment2"
+  key_name                = "pr2"
   monitoring              = true
   disable_api_termination = false
   ebs_optimized           = true
 }
 
 resource "aws_key_pair" "k8s" {
-  key_name   = "assignment2"
-  public_key = file("${path.module}/assignment2.pub")
+  key_name   = "pr2"
+  public_key = file("${path.module}/pr2.pub")
 }
 
 # Creating ecr repositories
